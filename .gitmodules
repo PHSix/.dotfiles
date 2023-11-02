@@ -1,0 +1,3 @@
+[submodule ".local/share/zap"]
+	path = .local/share/zap
+	url = /Users/ph/.local/share/zap
