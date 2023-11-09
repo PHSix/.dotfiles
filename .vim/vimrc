@@ -1,0 +1,56 @@
+set nu
+set rnu
+set re=0
+syntax on
+set laststatus=2
+set encoding=utf-8
+set nobackup
+set nowritebackup
+set noswapfile
+set signcolumn=yes
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set termguicolors
+set cursorline
+set mouse=a
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set history=1000
+set backspace=indent,eol,start
+set wildmenu
+set showcmd
+
+map ; :
+map <space> <leader>
+nmap <leader>bd <Cmd>bdelete<CR>
+
+augroup help_map
+	autocmd filetype help nmap<buffer> q <Cmd>q<CR>
+augroup END
+
+call plug#begin()
+Plug 'nordtheme/vim'
+
+Plug 'peitalin/vim-jsx-typescript'
+
+Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
+Plug 'preservim/vim-indent-guides'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'bluz71/vim-mistfly-statusline'
+Plug 'airblade/vim-rooter'
+
+call plug#end()
+
+nmap <leader>ff <Cmd>Leaderf file<CR>
+nmap <leader>fo <Cmd>Leaderf mru<CR>
+nmap <leader>fw <Cmd>Leaderf rg<CR>
+nmap <leader>fb <Cmd>Leaderf buffer<CR>
+
+colorscheme nord
+
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'coc-explorer']
