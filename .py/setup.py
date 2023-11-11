@@ -1,4 +1,24 @@
 import os
+import platform
+from typing import Dict
+
+
+ALL_COMMON_FOLDERS = [
+    ".config/wezterm",
+    ".config/kitty",
+    ".config/alacritty",
+    ".config/emacs",
+    ".config/yazi",
+    ".vim",
+    ".zshrc",
+    ".tmux.conf",
+    ".ideavimrc",
+]
+
+
+OSX_FOLDERS_MAP: Dict[str, str] = {
+    ".config/wezterm": ".config/wezterm_osx",
+}
 
 
 def shell_call(cmd: str):
@@ -7,6 +27,16 @@ def shell_call(cmd: str):
         os.system(cmd)
     except:
         print("exec failed")
+
+
+def get_source_folder(f: str) -> str:
+    if platform.system() == "Darwin":
+        return OSX_FOLDERS_MAP.get(f) or f
+    return f
+
+
+def link_file(source: str, target: str):
+    shell_call("ln -s {source} {target}".format(source=source, target=target))
 
 
 if __name__ == "__main__":
@@ -21,23 +51,12 @@ if __name__ == "__main__":
     # prepare
     shell_call("mkdir ~/.config")
 
-    link_folders = [
-        ".config/wezterm",
-        ".config/kitty",
-        ".config/alacritty",
-        ".config/emacs",
-        ".config/yazi",
-        ".vim",
-        ".zshrc",
-        ".tmux.conf",
-        ".ideavimrc",
-    ]
-
-    for f in link_folders:
-        shell_call(
-            "ln -s {dotfiles_path}/{folder} ~/{folder}".format(
-                dotfiles_path=path, folder=f
-            )
+    for f in ALL_COMMON_FOLDERS:
+        link_file(
+            "{dotfiles_path}/{source_folder}".format(
+                dotfiles_path=path, source_folder=get_source_folder(f)
+            ),
+            "~/{folder}".format(folder=f),
         )
 
     print("setup finish")

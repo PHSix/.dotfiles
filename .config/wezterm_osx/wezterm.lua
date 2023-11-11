@@ -9,7 +9,7 @@ return {
 		"霞鹜文楷",
 		"monospace",
 	}),
-	font_size = 14,
+	font_size = 20,
 	enable_tab_bar = false,
 	color_scheme = "Nord (base16)",
 	window_padding = {
@@ -19,4 +19,14 @@ return {
 		bottom = 0,
 	},
 	window_close_confirmation = "NeverPrompt",
+	keys = {
+		{
+			key = "s",
+			mods = "CMD",
+			action = act.SendKey({
+				key = "s",
+				mods = "ALT",
+			}),
+		},
+	},
 }

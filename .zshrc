@@ -23,6 +23,7 @@ alias gPf="git push -f"
 alias gp="git pull"
 alias gpr="git pull --rebase"
 alias glogen="git log --oneline -n"
+alias fetch="fastfetch"
 
 if type "yazi" > /dev/null; then
   alias ra="yz"
@@ -69,12 +70,17 @@ export EDITOR=nvim
 autoload -Uz compinit
 compinit
 
+# fzf-tab must loaded after compinit and before plugins
+plug "Aloxaf/fzf-tab"
+
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
 # plug "zsh-users/zsh-syntax-highlighting"
 plug "zdharma-continuum/fast-syntax-highlighting"
 plug "jeffreytse/zsh-vi-mode"
+plug "zsh-users/zsh-completions"
 
-# fzf-tab must loaded after compinit and before plugins
-plug "Aloxaf/fzf-tab"
+if [ -v MACHINE_NAME ]; then
+  PROMPT=" [ %{$fg_bold[cyan]$MACHINE_NAME%{$reset_color ] $PROMPT"
+fi
