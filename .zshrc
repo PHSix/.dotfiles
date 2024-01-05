@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ##################################
 ############ alias ###############
 ##################################
@@ -74,7 +81,7 @@ compinit
 plug "Aloxaf/fzf-tab"
 
 plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
+plug 'romkatv/powerlevel10k'
 plug "zap-zsh/zap-prompt"
 # plug "zsh-users/zsh-syntax-highlighting"
 plug "zdharma-continuum/fast-syntax-highlighting"
@@ -84,3 +91,5 @@ plug "zsh-users/zsh-completions"
 if [ -v MACHINE_NAME ]; then
   PROMPT=" [ %{$fg_bold[cyan]$MACHINE_NAME%{$reset_color ] $PROMPT"
 fi
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -11,6 +11,7 @@ ALL_COMMON_FOLDERS = [
     ".config/yazi",
     ".vim",
     ".zshrc",
+    ".p10k.zsh",
     ".tmux.conf",
     ".ideavimrc",
 ]

@@ -45,6 +45,7 @@ Plug 'airblade/vim-rooter'
 
 call plug#end()
 
+
 nmap <leader>ff <Cmd>Leaderf file<CR>
 nmap <leader>fo <Cmd>Leaderf mru<CR>
 nmap <leader>fw <Cmd>Leaderf rg<CR>
