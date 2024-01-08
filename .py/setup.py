@@ -37,7 +37,11 @@ def get_source_folder(f: str) -> str:
 
 
 def link_file(source: str, target: str):
-    shell_call("ln -s {source} {target}".format(source=source, target=target))
+    absPath = os.path.expanduser(target)
+    if os.path.exists(absPath):
+        print("{path} is exists.".format(path=absPath))
+        return
+    shell_call("ln -s {source} {target}".format(source=source, target=absPath))
 
 
 if __name__ == "__main__":
